@@ -9,10 +9,28 @@ class Solution{
 public:	
 	int search(int A[], int N){
 	    //code
-	    int ans = 0;
-	    for(int i = 0; i < N; i++)
-	        ans ^= A[i];
-	    return ans;
+        int l = 0, r = N - 1;
+        while(l <= r)
+        {
+            int mid = l + (r - l) / 2;
+            if(mid + 1 < N && A[mid + 1] == A[mid])
+            {
+                if((mid + 1) & 1)
+                    l = mid + 2;
+                else
+                    r = mid - 1;
+                
+            }
+            else if(mid - 1 >= 0 && A[mid - 1] == A[mid]){
+                if(mid & 1)
+                    l = mid + 1;
+                else
+                    r = mid - 2;
+            }
+            else
+                return A[mid];
+        }
+        return -1;
 	}
 };
 
