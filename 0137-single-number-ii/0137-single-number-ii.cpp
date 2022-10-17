@@ -7,20 +7,14 @@ public:
             int cnt = 0;
             for(int x : nums)
             {
-                x = abs(x);
                 if(x & (1 << i))
                     cnt++;
             }
             cnt %= 3;
-            if(cnt)
+            if(cnt % 3 != 0)
                 ans |= (1 << i);
         }
-        int cnt = 0;
-        for(int x : nums)
-        {
-            if(ans == x)
-                cnt++;
-        }
-        return cnt == 1 ? ans : -ans;
+        
+        return ans;
     }
 };
