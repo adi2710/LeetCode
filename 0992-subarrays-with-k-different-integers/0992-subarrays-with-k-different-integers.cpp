@@ -2,24 +2,24 @@ class Solution {
 public:
     int subarraysWithKDistinct(vector<int>& nums, int k) {
         unordered_map<int, int> mp;
-        int n = nums.size(), ans = 0;
-        for(int i = 0, j = -1, r = 0; i < n; i++)
+        int ans = 0;
+        for(int l = 0, r = -1, rr = -1, n = nums.size(); l < n; l++)
         {
-            while(j + 1 < n && mp.size() < k)
-                mp[nums[++j]]++;
+            while(r + 1 < n && mp.size() < k)
+                mp[nums[++r]]++;
             if(mp.size() == k)
             {
-                if(r <= j)
+                if(rr <= r)
                 {
-                    r = j;
-                    while(r + 1 < n && mp.find(nums[r + 1]) != mp.end())
-                        r++;
+                    rr = r + 1;
+                    while(rr < n && mp.find(nums[rr]) != mp.end())
+                        rr++;
                 }
-                ans += r - j + 1;
+                ans += rr - r;
             }
-            mp[nums[i]]--;
-            if(mp[nums[i]] == 0)
-                mp.erase(nums[i]);
+            mp[nums[l]]--;
+            if(mp[nums[l]] == 0)
+                mp.erase(nums[l]);
         }
         return ans;
     }
