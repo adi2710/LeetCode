@@ -30,21 +30,21 @@ public:
                 if(minFreq == fr)
                     minFreq++;
             }
-            ls[fr + 1].push_back({key, value});
-            freq[key] = {fr + 1, --ls[fr + 1].end()};
+            ls[fr + 1].push_front({key, value});
+            freq[key] = {fr + 1, ls[fr + 1].begin()};
             return;
         }
         if(freq.size() == sz && minFreq >= 1)
         {
-            int key = ls[minFreq].front().first;
+            int key = ls[minFreq].back().first;
             freq.erase(key);
-            ls[minFreq].erase(ls[minFreq].begin());
+            ls[minFreq].erase(--ls[minFreq].end());
             if(ls[minFreq].empty())
                 ls.erase(minFreq);
         }
         if(freq.size() < sz){
-            ls[1].push_back({key, value});
-            freq[key] = {1, --ls[1].end()};
+            ls[1].push_front({key, value});
+            freq[key] = {1, ls[1].begin()};
             minFreq = 1;
         }
     }
