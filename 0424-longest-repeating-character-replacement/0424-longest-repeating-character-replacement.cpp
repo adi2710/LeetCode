@@ -1,9 +1,8 @@
 class Solution {
 public:
     int characterReplacement(string s, int k) {
-        unordered_set<char> st(s.begin(), s.end());
         int ans = 0, n = s.size();
-        for(char ch : st)
+        for(char ch = 'A'; ch <= 'Z'; ch++)
         {
             int diff = 0;
             for(int l = 0, r = 0; l < n; l++)
