@@ -3,6 +3,7 @@ public:
     
     unordered_map<string, int> freq;
     unordered_map<int, unordered_set<string>> mp;
+    set<int> freqStore;
     int mxFreq, mnFreq;
     
     AllOne() {
@@ -15,6 +16,8 @@ public:
     void inc(string key) {
         if(freq.find(key) == freq.end())
         {
+            if(mp.find(1) == mp.end())
+                freqStore.insert(1);
             mp[1].insert(key);
             freq[key] = 1;
             mnFreq = 1;
@@ -25,10 +28,13 @@ public:
         mp[fr].erase(key);
         if(mp[fr].empty()){
             mp.erase(fr);
+            freqStore.erase(fr);
             if(mnFreq == fr)
                 mnFreq++;
         }
         mxFreq = max(mxFreq, fr + 1);
+        if(mp.find(fr + 1) == mp.end())
+            freqStore.insert(fr + 1);
         freq[key] = fr + 1;
         mp[fr + 1].insert(key);
     }
@@ -43,14 +49,15 @@ public:
                 mnFreq--;
             if(mxFreq == fr)
                 mxFreq--;
+            freqStore.erase(fr);
         }
         if(fr == 1){
-            if(!freq.empty()){
-                while(mp.find(mnFreq) == mp.end())
-                    mnFreq++;
-            }
+            if(!freqStore.empty())
+                mnFreq = *freqStore.begin();
             return;
         }
+        if(mp.find(fr - 1) == mp.end())
+            freqStore.insert(fr - 1);
         freq[key] = fr - 1;
         mp[fr - 1].insert(key);
     }
