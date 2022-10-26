@@ -5,8 +5,8 @@ class Solution {
         int n = forest.size(), m = forest[0].size();
         queue<pair<int, int>> q;
         q.push({sr, sc});
-        vector<vector<bool>> vis(n, vector<bool> (m));
-        vis[sr][sc] = true;
+        vector<vector<int>> vis(n, vector<int> (m));
+        vis[sr][sc] = 1;
         vector<int> dx = {-1, 1, 0, 0}, dy = {0, 0, -1, 1};
         int step = 0;
         while(!q.empty())
@@ -23,7 +23,7 @@ class Solution {
                     if(row < 0 || row >= n || col < 0 || col >= m || forest[row][col] == 0 || vis[row][col])
                         continue;
                     q.push({row, col});
-                    vis[row][col] = true;
+                    vis[row][col] = 1;
                 }
             }
             step++;
