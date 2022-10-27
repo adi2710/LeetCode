@@ -1,13 +1,23 @@
 class Solution {
 public:
     
-    void dfs(int cur, vector<bool> &vis, vector<vector<int>> &isConnected)
+    void bfs(int cur, vector<bool> &vis, vector<vector<int>> &isConnected)
     {
         vis[cur] = 1;
-        for(int i = 0; i < isConnected.size(); i++)
+        queue<int> q;
+        q.push(cur);
+        while(!q.empty())
         {
-            if(isConnected[cur][i] && !vis[i])
-                dfs(i, vis, isConnected);
+            cur = q.front();
+            q.pop();
+            for(int i = 0; i < isConnected.size(); i++)
+            {
+                if(isConnected[cur][i] && !vis[i])
+                {
+                    vis[i] = 1;
+                    q.push(i);
+                }
+            }
         }
     }
     
@@ -18,7 +28,7 @@ public:
         {
             if(!vis[i])
             {
-                dfs(i, vis, isConnected);
+                bfs(i, vis, isConnected);
                 ans++;
             }
         }
