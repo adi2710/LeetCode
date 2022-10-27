@@ -1,30 +1,32 @@
 class Solution {
 public:
-    
-    string solve(int &i, string &s)
-    {
-        string res;
-        while(i < s.size() && s[i] != ']')
+    string decodeString(string s) {
+        stack<string> st;
+        for(int i = 0; i < s.size(); i++)
         {
-            if(!isdigit(s[i]))
-                res += s[i++];
+            if(s[i] != ']')
+                st.push(string(1, s[i]));
             else
             {
-                int n = 0;
-                while(i < s.size() && s[i] != '[')
-                    n = n * 10 + s[i++] - '0';
-                i++;
-                string next = solve(i, s);
-                i++;
-                while(n--)
-                    res += next;
+                string rev;
+                while(st.top() != "[")
+                    rev += st.top(), st.pop();
+                st.pop();
+                
+                
+                string n;
+                while(!st.empty() && isdigit(st.top()[0]))
+                    n += st.top(), st.pop();
+                reverse(n.begin(), n.end());
+                int num = stoi(n);
+                while(num--)
+                    st.push(rev);
             }
         }
-        return res;
-    }
-    
-    string decodeString(string s) {
-        int i = 0;
-        return solve(i, s);
+        string ans;
+        while(!st.empty())
+            ans += st.top(), st.pop();
+        reverse(ans.begin(), ans.end());
+        return ans;
     }
 };
