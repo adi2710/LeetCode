@@ -4,7 +4,12 @@ public:
     struct compare{
         size_t operator()(const pair<int, int> &a) const
         {
-            return a.first ^ a.second;
+            auto hash1 = hash<int>{}(a.first);
+            auto hash2 = hash<int>{}(a.second);
+            
+            if(hash1 != hash2)
+                return hash1 ^ hash2;
+            return hash1;
         }
     };
     
