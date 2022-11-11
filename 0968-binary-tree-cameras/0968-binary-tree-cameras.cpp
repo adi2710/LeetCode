@@ -10,7 +10,6 @@
  * };
  */
 class Solution {
-public:
     
     #define no_camera_needed 1
     #define has_camera 2
@@ -34,6 +33,7 @@ public:
         return no_camera_needed;
     }
     
+    public:
     int minCameraCover(TreeNode* root) {
         int ans = 0;
         if(minCameraCount(root, ans) == need_camera)
