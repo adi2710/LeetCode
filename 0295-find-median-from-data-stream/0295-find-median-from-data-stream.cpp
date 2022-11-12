@@ -7,7 +7,7 @@ public:
     }
     
     void addNum(int num) {
-        if(left.empty() || left.top() >= num)
+        if(left.empty() || num <= left.top())
             left.push(num);
         else
             right.push(num);
@@ -20,8 +20,7 @@ public:
     double findMedian() {
         if(left.size() == right.size())
             return (left.top() + right.top()) / 2.0;
-        else
-            return left.size() > right.size() ? left.top() : right.top();
+        return left.size() > right.size() ? left.top() : right.top();
     }
 };
 
