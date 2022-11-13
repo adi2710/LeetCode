@@ -85,49 +85,63 @@ Node *buildTree(string str) {
 class Solution {
     public:
     
-    int findMaxDepth(Node *root)
+    void preorder(Node *root, unordered_map<Node*, Node*> &par, Node* &st, int target)
     {
         if(root == nullptr)
-            return 0;
-            
-        return max(findMaxDepth(root -> left), findMaxDepth(root -> right)) + 1;
+            return;
+        
+        if(root -> data == target)
+            st = root;
+        
+        if(root -> left != nullptr)
+            par[root -> left] = root;
+        if(root -> right != nullptr)
+            par[root -> right] = root;
+        preorder(root -> left, par, st, target);
+        preorder(root -> right, par, st, target);
     }
     
-    int postorder(Node *root, int target, int &ans)
+    int bfs(Node *root, unordered_map<Node*, Node*> &par)
     {
-        if(root == nullptr)
-            return 0;
-            
-        if(root -> data == target)
+        queue<Node*> q;
+        unordered_set<Node*> vis;
+        q.push(root);
+        vis.insert(root);
+        int ans = 0;
+        while(!q.empty())
         {
-            int maxDepth = findMaxDepth(root);
-            ans = max(ans, maxDepth - 1);
-            return 1;
+            for(int i = q.size(); i >= 1; i--)
+            {
+                Node *cur = q.front();
+                q.pop();
+                if(cur -> left != nullptr && vis.find(cur -> left) == vis.end())
+                {
+                    q.push(cur -> left);
+                    vis.insert(cur -> left);
+                }
+                if(cur -> right != nullptr && vis.find(cur -> right) == vis.end())
+                {
+                    q.push(cur -> right);
+                    vis.insert(cur -> right);
+                }
+                if(par[cur] != nullptr && vis.find(par[cur]) == vis.end())
+                {
+                    q.push(par[cur]);
+                    vis.insert(par[cur]);
+                }
+            }
+            ans++;
         }
-        
-        int lf = postorder(root -> left, target, ans);
-        int rt = postorder(root -> right, target, ans);
-        
-        if(lf > 0)
-        {
-            int maxDepth = findMaxDepth(root -> right);
-            ans = max(ans, maxDepth + lf);
-            return lf + 1;
-        }
-        else if(rt > 0)
-        {
-            int maxDepth = findMaxDepth(root -> left);
-            ans = max(ans, maxDepth + rt);
-            return rt + 1;
-        }
-        return 0;
+        return ans - 1;
     }
     
     int minTime(Node* root, int target) 
     {
-        int ans = 0;
-        postorder(root, target, ans);
-        return ans;
+        // Your code goes here
+        unordered_map<Node*, Node*> par;
+        Node* st;
+        preorder(root, par, st, target);
+        return bfs(st, par);
     }
 };
 
