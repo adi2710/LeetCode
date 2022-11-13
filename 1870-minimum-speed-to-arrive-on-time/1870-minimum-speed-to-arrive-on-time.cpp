@@ -1,11 +1,11 @@
 class Solution {
 public:
     
-    double countTime(vector<int>& dist, int speed)
+    double countTime(vector<int>& dist, double speed)
     {
-        double time = 1.0 * dist.back() / speed;
+        double time = (double)dist.back() / speed;
         for(int i = 0; i < dist.size() - 1; i++)
-            time += ceil(1.0 * dist[i] / speed);
+            time += ceil((double)dist[i] / speed);
         return time;
     }
     
@@ -16,7 +16,7 @@ public:
         while(r - l > 1)
         {
             int mid = l + (r - l) / 2;
-            if(countTime(dist, mid) - hour <= 1e-10)
+            if(countTime(dist, mid) - hour <= 1e-9)
                 r = mid;
             else
                 l = mid;
