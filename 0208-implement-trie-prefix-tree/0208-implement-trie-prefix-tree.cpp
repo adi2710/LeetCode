@@ -10,8 +10,6 @@ public:
     }
     
     ~Trie(){
-        for(int i = 0; i < 26; i++)
-            delete(child[i]);
     }
     
     void insert(string word) {
