@@ -9,6 +9,11 @@ public:
         child.resize(26, nullptr);
     }
     
+    ~Trie(){
+        for(int i = 0; i < 26; i++)
+            delete(child[i]);
+    }
+    
     void insert(string word) {
         Trie* cur = this;
         for(char ch : word)
