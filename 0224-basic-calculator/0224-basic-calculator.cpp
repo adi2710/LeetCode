@@ -14,8 +14,8 @@ public:
                 sum += num * sign;
                 sign = 1;
             }
-            else if(s[i] == '+' || s[i] == '-')
-                sign *= s[i] == '-' ? -1 : 1;
+            else if(s[i] == '-')
+                sign *= -1;
             else if(s[i] == '(')
             {
                 st.push(sum);
@@ -24,9 +24,9 @@ public:
             }
             else if(s[i] == ')')
             {
-                int cur_sign = st.top();
+                sum *= st.top();
                 st.pop();
-                sum = st.top() + sum * cur_sign;
+                sum += st.top();
                 st.pop();
                 sign = 1;
             }
