@@ -1,56 +1,20 @@
-class Solution {
+class Solution
+{
 public:
-    bool isValidSudoku(vector<vector<char>>& board) {
-        bool ans = true;
-        int n = board.size();
-        for(int i = 0; i < n; i++)
-        {
-            vector<bool> vis(10);
-            for(int j = 0; j < n; j++)
-            {
-                if(isdigit(board[i][j]))
+    bool isValidSudoku(vector<vector<char> > &board)
+    {
+        int used1[9][9] = {0}, used2[9][9] = {0}, used3[9][9] = {0};
+        
+        for(int i = 0; i < board.size(); ++ i)
+            for(int j = 0; j < board[i].size(); ++ j)
+                if(board[i][j] != '.')
                 {
-                    if(vis[board[i][j] - '0'])
+                    int num = board[i][j] - '0' - 1, k = i / 3 * 3 + j / 3;
+                    if(used1[i][num] || used2[j][num] || used3[k][num])
                         return false;
-                    else
-                        vis[board[i][j] - '0'] = true;
+                    used1[i][num] = used2[j][num] = used3[k][num] = 1;
                 }
-            }
-        }
-        for(int i = 0; i < n; i++)
-        {
-            vector<bool> vis(10);
-            for(int j = 0; j < n; j++)
-            {
-                if(isdigit(board[j][i]))
-                {
-                    if(vis[board[j][i] - '0'])
-                        return false;
-                    else
-                        vis[board[j][i] - '0'] = true;
-                }
-            }
-        }
-        for(int i = 0; i < n; i += 3)
-        {
-            for(int j = 0; j < n; j += 3)
-            {
-                vector<bool> vis(10);
-                for(int k = i; k - i < 3; k++)
-                {
-                    for(int l = j; l - j < 3; l++)
-                    {
-                        if(isdigit(board[k][l]))
-                        {
-                            if(vis[board[k][l] - '0'])
-                                return false;
-                            else
-                                vis[board[k][l] - '0'] = true;
-                        }
-                    }
-                }
-            }
-        }
+        
         return true;
     }
 };
