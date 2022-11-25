@@ -18,8 +18,7 @@ public:
     {
         isEnd = false;
         cntOfWords = 0;
-        for(int i = 0; i < 26; i++)
-            child[i] = nullptr;
+        memset(child, 0, sizeof(child));
     }
     
     void insert(string &s)
