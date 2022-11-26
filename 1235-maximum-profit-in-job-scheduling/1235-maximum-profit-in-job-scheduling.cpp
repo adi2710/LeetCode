@@ -4,14 +4,14 @@ public:
     int dp[50000];
     int lower_bound(vector<tuple<int, int, int>> &jobs, int time)
     {
-        auto &[startTime, endTime, profit] = jobs.back();
+        auto [startTime, endTime, profit] = jobs.back();
         if(startTime < time)
             return jobs.size();
         int l = -1, r = jobs.size() - 1;
         while(r - l > 1)
         {
             int mid = l + (r - l) / 2;
-            auto &[startTime, endTime, profit] = jobs[mid];
+            auto [startTime, endTime, profit] = jobs[mid];
             if(startTime >= time)
                 r = mid;
             else
@@ -28,7 +28,7 @@ public:
         if(dp[i] != -1)
             return dp[i];
         
-        auto &[startTime, endTime, profit] = jobs[i];
+        auto [startTime, endTime, profit] = jobs[i];
         int nxt = lower_bound(jobs, endTime);
         return dp[i] = max(profit + solve(nxt, jobs), solve(i + 1, jobs));
     }
