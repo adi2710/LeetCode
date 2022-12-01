@@ -1,8 +1,8 @@
 class Solution {
 public:
     vector<double> medianSlidingWindow(vector<int>& nums, int k) {
-        multiset<int> st;
         vector<double> ans;
+        multiset<int> st;
         for(int l = 0, r = 0; r < nums.size(); r++)
         {
             st.insert(nums[r]);
