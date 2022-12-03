@@ -1,14 +1,17 @@
 class Solution {
 public:
     string frequencySort(string s) {
-        unordered_map<char, int> freq;
-        for(char ch : s)
-            freq[ch]++;
-        sort(s.begin(), s.end(), [&](const char &a, const char &b){
-            if(freq[a] == freq[b])
-                return a > b;
-            return freq[a] > freq[b];
+        string ans;
+        vector<pair<char, int>> freq(256, {0, 0});
+        for (const auto &c : s) {
+            freq[c].first = c;
+            freq[c].second++;
+        }
+        sort(freq.begin(), freq.end(), [](pair<char, int>& l, pair<char, int>& r) {
+            return l.second > r.second;
         });
-        return s;
-    }
+        for (auto it = freq.begin(); it != freq.end(); ++it)
+            ans.append(it -> second, it -> first);
+        return ans;
+    } 
 };
