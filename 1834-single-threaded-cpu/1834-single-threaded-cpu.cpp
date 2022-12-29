@@ -3,9 +3,7 @@ public:
     vector<int> getOrder(vector<vector<int>>& tasks) {
         for(int i = 0; i < tasks.size(); i++)
             tasks[i].push_back(i);
-        sort(tasks.begin(), tasks.end(), [](const vector<int> &a, const vector<int> &b){
-            return a[0] < b[0];
-        });
+        sort(tasks.begin(), tasks.end());
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
         int i = 0;
         long curTime = 1;
