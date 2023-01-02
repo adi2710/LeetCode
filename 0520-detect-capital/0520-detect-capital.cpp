@@ -1,6 +1,6 @@
 class Solution {
 public:
-    bool detectCapitalUse(string word) {
+    bool detectCapitalUse(string &word) {
         int cnt = 0;
         for(char ch : word)
             cnt += 'A' <= ch && ch <= 'Z';
