@@ -1,17 +1,18 @@
 class Solution {
 public:
     int minDeletionSize(vector<string>& strs) {
-        unordered_set<int> st;
-        for(int i = 1; i < strs.size(); i++)
+        int ans = 0;
+        for(int col = 0; col < strs[0].size(); col++)
         {
-            for(int j = 0; j < strs[i].size(); j++)
+            for(int row = 1; row < strs.size(); row++)
             {
-                if(st.find(j) != st.end())
-                    continue;
-                if(strs[i - 1][j] > strs[i][j])
-                    st.insert(j);
+                if(strs[row - 1][col] > strs[row][col])
+                {
+                    ans++;
+                    break;
+                }
             }
         }
-        return st.size();
+        return ans;
     }
 };
