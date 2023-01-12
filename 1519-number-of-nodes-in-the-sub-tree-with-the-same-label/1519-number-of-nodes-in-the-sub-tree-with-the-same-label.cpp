@@ -1,31 +1,29 @@
 class Solution {
 public:
     
-    vector<int> dfs(int cur, int par, string &labels, vector<vector<int>> &gr, vector<int> &ans)
+    void dfs(int cur, int par, string &labels, vector<vector<int>> &gr, vector<int> &freq, vector<int> &ans)
     {
-        vector<int> freq(26);
+        int temp = freq[labels[cur] - 'a'];
+        freq[labels[cur] - 'a'] = 1;
         for(int x : gr[cur])
         {
             if(x == par)
                 continue;
-            vector<int> childFreq = dfs(x, cur, labels, gr, ans);
-            for(int i = 0; i < 26; i++)
-                freq[i] += childFreq[i];
+            dfs(x, cur, labels, gr, freq, ans);
         }
-        freq[labels[cur] - 'a']++; 
         ans[cur] = freq[labels[cur] - 'a'];
-        return freq;
+        freq[labels[cur] - 'a'] += temp;
     }
     
     vector<int> countSubTrees(int n, vector<vector<int>>& edges, string &labels) {
-        vector<int> ans(n);
+        vector<int> ans(n), freq(26);
         vector<vector<int>> gr(n);
         for(auto &edge : edges)
         {
             gr[edge[0]].push_back(edge[1]);
             gr[edge[1]].push_back(edge[0]);
         }
-        dfs(0, 0, labels, gr, ans);
+        dfs(0, 0, labels, gr, freq, ans);
         return ans;
     }
 };
