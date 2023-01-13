@@ -25,7 +25,7 @@ public:
     }
     
     int longestPath(vector<int>& parent, string &s) {
-        int n = s.size(), ans = 0;
+        int n = s.size(), ans = 1;
         vector<vector<int>> gr(n);
         for(int i = 1; i < n; i++)
         {
