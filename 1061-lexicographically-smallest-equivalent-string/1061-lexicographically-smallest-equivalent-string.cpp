@@ -3,12 +3,10 @@ public:
     
     int find(int cur, vector<int> &par)
     {
-        while(par[cur] != cur)
-        {
-            par[cur] = par[par[cur]];
-            cur = par[cur];
-        }
-        return cur;
+        if(par[cur] == cur)
+            return cur;
+        
+        return par[cur] = find(par[cur], par);
     }
     
     void unite(int u, int v, vector<int> &par)
