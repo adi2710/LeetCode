@@ -11,16 +11,15 @@ public:
         return cur;
     }
     
-    bool unite(int u, int v, vector<int> &par)
+    void unite(int u, int v, vector<int> &par)
     {
         int p1 = find(u, par), p2 = find(v, par);
         if(p1 == p2)
-            return false;
+            return;
         if(p1 < p2)
             par[p2] = p1;
         else
             par[p1] = p2;
-        return true;
     }
     
     string smallestEquivalentString(string s1, string s2, string baseStr) {
