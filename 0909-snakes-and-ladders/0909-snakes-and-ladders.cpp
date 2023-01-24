@@ -1,41 +1,43 @@
 class Solution {
 public:
     
-    pair<int, int> convert(int cell, int n)
+    int convert(int cell, vector<vector<int>> &board)
     {
-        int row = n - 1 - (cell - 1) / n;
+        int n = board.size();
+        int row = (cell - 1) / n;
         int col = (cell - 1) % n;
-        if((row & 1 ^ 1) && (n & 1 ^ 1))
-            col = n - 1 - col;
-        else if((row & 1) && (n & 1))
-            col = n - 1 - col;
-        return {row, col};
+        if(row & 1)
+            col = n - col - 1;
+        row = n - row - 1;
+        return (board[row][col] == -1 ? cell : board[row][col]);
     }
     
     int snakesAndLadders(vector<vector<int>>& board) {
-        int n = board.size(), ans = 0;
-        vector<bool> vis(n * n + 1);
+        int n = board.size();
         queue<int> q;
+        vector<bool> vis(n * n + 1);
         q.push(1);
-        vis[1] = 1;
+        vis[1] = true;
+        int ans = 0;
         while(!q.empty())
         {
-            ans++;
             for(int i = q.size(); i >= 1; i--)
             {
                 int cell = q.front();
                 q.pop();
                 if(cell == n * n)
-                    return ans - 1;
+                    return ans;
                 for(int new_cell = cell + 1; new_cell - cell <= 6 && new_cell <= n * n; new_cell++)
                 {
-                    auto [row, col] = convert(new_cell, n);
-                    if(board[row][col] != -1 && !vis[board[row][col]])
-                        q.push(board[row][col]), vis[board[row][col]] = 1;
-                    else if(board[row][col] == -1 && !vis[new_cell])
-                        q.push(new_cell), vis[new_cell] = 1;
+                    int abs_new_cell = convert(new_cell, board);
+                    if(!vis[abs_new_cell])
+                    {
+                        q.push(abs_new_cell);
+                        vis[abs_new_cell] = true;
+                    }
                 }
             }
+            ans++;
         }
         return -1;
     }
