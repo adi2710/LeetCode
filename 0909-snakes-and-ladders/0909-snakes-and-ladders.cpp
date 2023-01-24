@@ -25,11 +25,13 @@ public:
             {
                 int cell = q.front();
                 q.pop();
-                if(cell == n * n)
-                    return ans;
+                // if(cell == n * n)
+                //     return ans;
                 for(int new_cell = cell + 1; new_cell - cell <= 6 && new_cell <= n * n; new_cell++)
                 {
                     int abs_new_cell = convert(new_cell, board);
+                    if(abs_new_cell == n * n)
+                        return ans + 1;
                     if(!vis[abs_new_cell])
                     {
                         q.push(abs_new_cell);
