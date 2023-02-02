@@ -1,1 +1,1 @@
-SELECT sub.email AS Email FROM (SELECT DISTINCT(email) AS email, COUNT(email) AS cnt FROM Person GROUP BY email) AS sub WHERE sub.cnt > 1;
+SELECT Email FROM (SELECT Email, COUNT(Email) AS cnt FROM Person GROUP BY Email) AS sub WHERE sub.cnt > 1;
