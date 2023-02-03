@@ -6,10 +6,10 @@ public:
         string ans;
         for(int row = 0; row < numRows; row++)
         {
+            int mid = 2 * (numRows - row - 1);
             for(int i = row; i < s.size(); i += 2 * (numRows - 1))
             {
                 ans += s[i];
-                int mid = 2 * (numRows - row - 1);
                 if(row >= 1 && row + 1 < numRows && i + mid < s.size())
                     ans += s[i + mid];
             }
