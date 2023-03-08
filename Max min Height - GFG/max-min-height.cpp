@@ -19,12 +19,10 @@ public:
         for(int i = 0; i < n; i++)
         {
             sum += pre[i];
-            // cout << sum << ' ';
             if(a[i] + sum < mid)
             {
                 long long diff = mid - a[i] - sum;
                 count += diff;
-                // cout << diff << endl;
                 sum += diff;
                 pre[min(i + w, n)] = -diff;
             }
@@ -36,7 +34,6 @@ public:
     {
         // code here
         long long l = *min_element(a.begin(), a.end()), r = l + k + 1;
-        // cout << isPossible(10, k, w, a) << endl;
         while(r - l > 1)
         {
             long long mid = l + (r - l) / 2;
