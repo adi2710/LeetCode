@@ -31,24 +31,15 @@ public:
         {
             for(int j = i + 1; j < n; j++)
             {
-                vector<int> diff;
+                int cnt = 0;
                 for(int k = 0; k < m; k++)
                 {
                     if(strs[i][k] != strs[j][k])
-                        diff.push_back(k);
-                    if(diff.size() > 2)
+                       cnt++;
+                    if(cnt > 2)
                         break;
                 }
-                if(diff.size() > 2 || diff.size() == 1)
-                    continue;
-                else if(diff.size() == 0)
-                {
-                    unite(i, j, par, rank, comp);
-                    continue;
-                }
-                string s1 = strs[i];
-                swap(s1[diff[0]], s1[diff[1]]);
-                if(s1 == strs[j])
+                if(cnt == 0 || cnt == 2)
                     unite(i, j, par, rank, comp);
             }
         }
