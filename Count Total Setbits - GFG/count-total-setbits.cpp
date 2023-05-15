@@ -11,7 +11,7 @@ class Solution {
         // code here
         long long ans = 0;
         N++;
-        for(long long i = 2; i <= 1e12; i *= 2)
+        for(long long i = 2; i <= 1e9; i *= 2)
         {
             long long cnt = N  / i;
             ans += cnt * (i / 2);
