@@ -6,20 +6,22 @@ public:
         bool ans = true;
         for(int adj : gr[cur])
         {
-            if(col[cur] == col[adj])
+            if(col[adj] == col[cur])
                 return false;
-            if(col[adj] > 0)
-                continue;
-            col[adj] = 3 - col[cur];
-            ans = ans && dfs(adj, col, gr);
+            if(col[adj] == 0)
+            {
+                col[adj] = 3 - col[cur];
+                ans = ans && dfs(adj, col, gr);
+            }
         }
         return ans;
     }
     
     bool isBipartite(vector<vector<int>>& graph) {
-        vector<int> col(graph.size());
+        int n = graph.size();
+        vector<int> col(n);
         bool ans = true;
-        for(int i = 0; i < graph.size(); i++)
+        for(int i = 0; i < n; i++)
         {
             if(col[i] == 0)
             {
