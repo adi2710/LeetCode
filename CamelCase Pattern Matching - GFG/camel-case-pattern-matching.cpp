@@ -14,15 +14,21 @@ class Solution {
             for(int i = 0; i < word.size(); i++)
             {
                 if('A' <= word[i] && word[i] <= 'Z')
-                {
                     camel += word[i];
-                    if(Pattern == camel)
-                    {
-                        ans.push_back(word);
-                        break;
-                    }
+            }
+            int i = 0, j = 0, fl = 1;
+            while(i < Pattern.size() && j < camel.size())
+            {
+                if(Pattern[i] == camel[j])
+                    i++, j++;
+                else
+                {
+                    fl = 0;
+                    break;
                 }
             }
+            if(fl && i == Pattern.size())
+                ans.push_back(word);
         }
         sort(ans.begin(), ans.end());
         if(ans.empty())
