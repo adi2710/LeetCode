@@ -10,9 +10,10 @@ public:
                 mp[mat[r][c]].push_back({r, c});
         }
         int ans = 0;
+        vector<int> temp;
         for(auto &[val, vec] : mp)
         {
-            vector<int> temp;
+            temp.clear();
             for(auto &[r, c] : vec){
                 int cur = max(max_row[r], max_col[c]);
                 temp.push_back(cur + 1);
