@@ -3,12 +3,6 @@ public:
     const int MOD = 1e9 + 7;
     int solve(int i, int fuel, int &finish, vector<int> &locations, vector<vector<int>> &dp)
     {
-        if(fuel == 0)
-        {
-            if(i == finish)
-                return 1;
-            return 0;
-        }
         if(dp[i][fuel] != -1)
             return dp[i][fuel];
         int ans = i == finish ? 1 : 0;
