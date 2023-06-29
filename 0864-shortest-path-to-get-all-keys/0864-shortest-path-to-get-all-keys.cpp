@@ -13,8 +13,8 @@ public:
                     keys++;
             }
         }
-        int key_mask = (1 << keys) - 1;
-        vector<vector<vector<bool>>> vis(n, vector<vector<bool>> (m, vector<bool> (1 << keys)));
+        int total_key_mask = (1 << keys) - 1;
+        vector<vector<vector<bool>>> vis(n, vector<vector<bool>> (m, vector<bool> (total_key_mask + 1)));
         vis[0][0][0] = true;
         int ans = 0;
         vector<int> dr = {-1, 1, 0, 0}, dc = {0, 0, -1, 1};
@@ -24,43 +24,26 @@ public:
             {
                 vector<int> ar = q.front();
                 q.pop();
-                int r = ar[0], c = ar[1], cur_keys = ar[2];
-                if(cur_keys == key_mask)
+                int r = ar[0], c = ar[1], cur_key_mask = ar[2];
+                if(cur_key_mask == total_key_mask)
                     return ans;
                 for(int j = 0; j < dr.size(); j++)
                 {
-                    int row = r + dr[j], col = c + dc[j];
+                    int row = r + dr[j], col = c + dc[j], new_key_mask = cur_key_mask;
                     if(row < 0 || row >= n || col < 0 || col >= m || grid[row][col] == '#')
                         continue;
                     else if('a' <= grid[row][col] && grid[row][col] <= 'z')
-                    {
-                        int pos = grid[row][col] - 'a';
-                        int new_key_mask = cur_keys | (1 << pos);
-                        if(vis[row][col][new_key_mask])
-                            continue;
-                        q.push({row, col, new_key_mask});
-                        vis[row][col][new_key_mask] = true;
-                    }
+                        new_key_mask |= (1 << (grid[row][col] - 'a'));
                     else if('A' <= grid[row][col] && grid[row][col] <= 'Z')
                     {
-                        int pos = grid[row][col] - 'A';
-                        if(vis[row][col][cur_keys])
-                            continue;
-                        if((cur_keys & (1 << pos)))
-                        {
-                            q.push({row, col, cur_keys});
-                            vis[row][col][cur_keys] = true;
-                        }
-                        else
+                        if((new_key_mask & (1 << (grid[row][col] - 'A'))) == 0)
                             continue;
                     }
-                    else
+                    if(!vis[row][col][new_key_mask])
                     {
-                        if(vis[row][col][cur_keys])
-                            continue;
-                        q.push({row, col, cur_keys});
-                        vis[row][col][cur_keys] = true;
-                    }
+                        vis[row][col][new_key_mask] = true;
+                        q.push({row, col, new_key_mask});
+                    } 
                 }
             }
             ans++;
