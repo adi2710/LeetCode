@@ -9,12 +9,7 @@ class Solution{
     public:
     int setSetBit(int x, int y, int l, int r){
         // code here
-        l--;
-        int mask = (1ll << r) - 1;
-        y &= mask;
-        mask = (1 << l) - 1;
-        y &= ~mask;
-        return x | y;
+        return x | y & (((1ll << r) - 1) & ~((1 << (l - 1)) - 1));
     }
 };
 
