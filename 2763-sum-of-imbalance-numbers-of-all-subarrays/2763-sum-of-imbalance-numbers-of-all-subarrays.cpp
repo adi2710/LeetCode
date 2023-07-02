@@ -1,35 +1,53 @@
 class Solution {
 public:
-    int sumImbalanceNumbers(vector<int>& nums) {
-        int n = nums.size() ;
-        int ans = 0 ; 
-        for(int i = 0 ; i< n ; ++i ){
-            multiset<int> st ; 
-            int prev = 0 ; 
-            for( int j = i ; j < n ; ++j ){
-                auto it = st.lower_bound(nums[j]) ;
-                if(j == i ) {} 
-                else if(it == st.end() ){
-                    --it ; 
-                    if(nums[j] - *it > 1 )  ++prev ; 
-                }
-                else if(it == st.begin() ){
-                    if( *it - nums[j] > 1 )  ++prev ; 
-                }
-                else{
-                    int right = *it ; 
-                    --it ; 
-                    int left = *it ; 
-                    if(right - left > 1 ) --prev ; 
-                    if(right - nums[j] > 1 ) ++prev ; 
-                    if( nums[j] - left > 1 ) ++prev ;
-                }
-                st.insert( nums[j] ) ;
-                ans += prev ; 
+    
+    int solve(int i, vector<int> &nums)
+    {
+        if(i == nums.size())
+            return 0;
+        
+        set<int> st;
+        int cnt = 0, no = 0;
+        for(int j = i; j < nums.size(); j++)
+        {
+            if(st.find(nums[j]) != st.end()){
+                cnt += no;
+                continue;
             }
-            
-            // cout<<ans<<" ";
+            if(st.empty())
+            {
+                st.insert(nums[j]);
+                continue;
+            }
+            auto next = st.upper_bound(nums[j]);
+            if(next == st.end())
+            {
+                auto prev = std::next(next, -1);
+                if(nums[j] - *prev > 1)
+                    no++;
+            }
+            else
+            {
+                if(next != st.begin())
+                {
+                    auto prev = std::next(next, -1);
+                    if(nums[j] - *prev > 1 || *next - nums[j] > 1)
+                        no++;
+                    if(nums[j] - *prev == 1 || *next - nums[j] == 1)
+                        no--;
+                }
+                else if(*next - nums[j] > 1)
+                    no++;
+            }
+            cnt += no;
+            st.insert(nums[j]);
         }
-        return ans ; 
-    } 
+        int sum = cnt + solve(i + 1, nums);
+        // cout << i << ' ' << cnt << ' ' << sum << endl;
+        return sum;
+    }
+    
+    int sumImbalanceNumbers(vector<int>& nums) {
+        return solve(0, nums);
+    }
 };
