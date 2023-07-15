@@ -3,7 +3,6 @@ public:
     
     int find_next(int l, vector<vector<int>> &events, int num)
     {
-        int pos = -1;
         int r = events.size();
         while(r - l > 1)
         {
