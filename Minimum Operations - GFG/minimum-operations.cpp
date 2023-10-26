@@ -9,13 +9,7 @@ class Solution
     int minOperation(int n)
     {
         //code here.
-        int msb = __builtin_clz(n), ans = 0;
-        while(n)
-        {
-            ans++;
-            n &= (n - 1);
-        }
-        return ans + (31 - msb);
+        return 31 - __builtin_clz(n) + __builtin_popcount(n);
     }
 };
 
