@@ -1,9 +1,12 @@
 class Solution {
 public:
+    inline string hash(int a, int b) {
+        return to_string(a) + "," + to_string(b);
+    }
     bool isPathCrossing(string path) {
-        set<pair<int, int>> st;
-        st.insert({0, 0});
+        unordered_set<string> st;
         int x = 0, y = 0;
+        st.insert(hash(x, y));
         for(char ch : path) {
             if(ch == 'N')
                 y++;
@@ -13,9 +16,10 @@ public:
                 x++;
             else
                 x--;
-            if(st.find({x, y}) != st.end())
+            string h = hash(x, y);
+            if(st.find(h) != st.end())
                 return true;
-            st.insert({x, y});
+            st.insert(h);
         }
         return false;
     }
