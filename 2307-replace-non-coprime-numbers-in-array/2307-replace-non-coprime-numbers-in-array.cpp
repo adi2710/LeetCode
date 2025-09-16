@@ -5,13 +5,12 @@ public:
         for(int i = 0; i < nums.size(); i++) {
             int num = nums[i];
             while(!ans.empty()) {
-                int last = ans.back();
-                int hcf = __gcd(last, num);
+                int hcf = __gcd(ans.back(), num);
                 if(hcf == 1) {
                     break;
                 }
+                num = 1ll * num * ans.back() / hcf;
                 ans.pop_back();
-                num = 1ll * num * last / hcf;
             }
             ans.push_back(num);
         }
