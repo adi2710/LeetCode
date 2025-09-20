@@ -8,12 +8,14 @@ Collection of LeetCode question solutions to ace the coding interview!
 | ------- |
 | [1006-vowel-spellchecker](https://github.com/adi2710/LeetCode/tree/master/1006-vowel-spellchecker) |
 | [2307-replace-non-coprime-numbers-in-array](https://github.com/adi2710/LeetCode/tree/master/2307-replace-non-coprime-numbers-in-array) |
+| [3827-implement-router](https://github.com/adi2710/LeetCode/tree/master/3827-implement-router) |
 ## Hash Table
 |  |
 | ------- |
 | [1006-vowel-spellchecker](https://github.com/adi2710/LeetCode/tree/master/1006-vowel-spellchecker) |
 | [1264-maximum-number-of-words-you-can-type](https://github.com/adi2710/LeetCode/tree/master/1264-maximum-number-of-words-you-can-type) |
 | [3678-design-task-manager](https://github.com/adi2710/LeetCode/tree/master/3678-design-task-manager) |
+| [3827-implement-router](https://github.com/adi2710/LeetCode/tree/master/3827-implement-router) |
 ## String
 |  |
 | ------- |
@@ -35,6 +37,7 @@ Collection of LeetCode question solutions to ace the coding interview!
 |  |
 | ------- |
 | [3678-design-task-manager](https://github.com/adi2710/LeetCode/tree/master/3678-design-task-manager) |
+| [3827-implement-router](https://github.com/adi2710/LeetCode/tree/master/3827-implement-router) |
 ## Heap (Priority Queue)
 |  |
 | ------- |
@@ -43,4 +46,13 @@ Collection of LeetCode question solutions to ace the coding interview!
 |  |
 | ------- |
 | [3678-design-task-manager](https://github.com/adi2710/LeetCode/tree/master/3678-design-task-manager) |
+| [3827-implement-router](https://github.com/adi2710/LeetCode/tree/master/3827-implement-router) |
+## Binary Search
+|  |
+| ------- |
+| [3827-implement-router](https://github.com/adi2710/LeetCode/tree/master/3827-implement-router) |
+## Queue
+|  |
+| ------- |
+| [3827-implement-router](https://github.com/adi2710/LeetCode/tree/master/3827-implement-router) |
 <!---LeetCode Topics End-->
