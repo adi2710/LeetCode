@@ -7,6 +7,7 @@ Collection of LeetCode question solutions to ace the coding interview!
 |  |
 | ------- |
 | [1006-vowel-spellchecker](https://github.com/adi2710/LeetCode/tree/master/1006-vowel-spellchecker) |
+| [1111-minimum-score-triangulation-of-polygon](https://github.com/adi2710/LeetCode/tree/master/1111-minimum-score-triangulation-of-polygon) |
 | [2307-replace-non-coprime-numbers-in-array](https://github.com/adi2710/LeetCode/tree/master/2307-replace-non-coprime-numbers-in-array) |
 | [3827-implement-router](https://github.com/adi2710/LeetCode/tree/master/3827-implement-router) |
 ## Hash Table
@@ -55,4 +56,8 @@ Collection of LeetCode question solutions to ace the coding interview!
 |  |
 | ------- |
 | [3827-implement-router](https://github.com/adi2710/LeetCode/tree/master/3827-implement-router) |
+## Dynamic Programming
+|  |
+| ------- |
+| [1111-minimum-score-triangulation-of-polygon](https://github.com/adi2710/LeetCode/tree/master/1111-minimum-score-triangulation-of-polygon) |
 <!---LeetCode Topics End-->
