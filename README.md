@@ -6,6 +6,7 @@ Collection of LeetCode question solutions to ace the coding interview!
 ## Array
 |  |
 | ------- |
+| [0417-pacific-atlantic-water-flow](https://github.com/adi2710/LeetCode/tree/master/0417-pacific-atlantic-water-flow) |
 | [1006-vowel-spellchecker](https://github.com/adi2710/LeetCode/tree/master/1006-vowel-spellchecker) |
 | [1111-minimum-score-triangulation-of-polygon](https://github.com/adi2710/LeetCode/tree/master/1111-minimum-score-triangulation-of-polygon) |
 | [2307-replace-non-coprime-numbers-in-array](https://github.com/adi2710/LeetCode/tree/master/2307-replace-non-coprime-numbers-in-array) |
@@ -60,4 +61,16 @@ Collection of LeetCode question solutions to ace the coding interview!
 |  |
 | ------- |
 | [1111-minimum-score-triangulation-of-polygon](https://github.com/adi2710/LeetCode/tree/master/1111-minimum-score-triangulation-of-polygon) |
+## Depth-First Search
+|  |
+| ------- |
+| [0417-pacific-atlantic-water-flow](https://github.com/adi2710/LeetCode/tree/master/0417-pacific-atlantic-water-flow) |
+## Breadth-First Search
+|  |
+| ------- |
+| [0417-pacific-atlantic-water-flow](https://github.com/adi2710/LeetCode/tree/master/0417-pacific-atlantic-water-flow) |
+## Matrix
+|  |
+| ------- |
+| [0417-pacific-atlantic-water-flow](https://github.com/adi2710/LeetCode/tree/master/0417-pacific-atlantic-water-flow) |
 <!---LeetCode Topics End-->
